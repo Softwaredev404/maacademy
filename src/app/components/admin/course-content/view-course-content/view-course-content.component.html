@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="pb-2">قائمة محتوى المواد</h5>
+
+                        </div>
+
+                        <div class="col-6">
+                            <input class="form-control form-control-light" type="text" placeholder="ابحث باي اسم او سعر"
+                                [(ngModel)]="filterstring" (keydown)="dectectBackSlash($event)"
+                                (ngModelChange)="searchInCourse($event)">
+                        </div>
+
+                        <div class="col-3 header-titles">
+                            <a routerLink="/content/admin/InsertCourseLecture" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">اضافة محتوى المواد</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class="">
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم محتوى المادة</th>
+                                        <th scope="col">السعر</th>
+                                        <th scope="col">اسم تصنيف المادة </th>
+                                        <!-- <th scope="col" [ngSwitch]="notFiltered">
+                                            <span *ngSwitchCase="false">اسم المادة</span>
+                                            <span *ngSwitchCase="true">
+
+                                                <ng-select [selectOnTab]="true" class="form-control p-0"
+                                                    placeholder="اختر المادة" id="validationCustom05"
+                                                    (change)="filter($event)">
+                                                    <ng-option *ngFor="let item of SubjectsName"
+                                                        [value]="item.subjectId">{{item.subjectName}}</ng-option></ng-select>
+
+                                            </span>
+                                        </th> -->
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of courselectures | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count };let x = index" class=" ">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.subjectContentName}}</td>
+                                        <td scope="row" class="p-2">{{view.price}}</td>
+                                        <td scope="row" class="p-2">{{view.subSubjectName}}</td>
+                                        <!-- <td scope="row" class="p-2">{{view.subjectName}}</td> -->
+
+                                        <td class="font-style chose">
+                                            <button class="btn pull-right" *ngIf="view.zoom != null"
+                                                style="color: rgba(35, 61, 161, 0.667); padding: 7px"
+                                                (click)="RemoveZoom(view.subjectContentId)"
+                                                title="وقف المحاضرة الاونلاين لهذه الحصة">
+                                                <i class="fa fa-caret-square-o-right"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(27, 26, 25, 0.667); padding: 7px"
+                                                (click)="addExam(view.subjectContentId)"
+                                                title="اضافة أمتحان لهذه الحصة">
+                                                <i class="fa fa-plus-square-o"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(220, 79, 57, 0.667); padding: 7px"
+                                                (click)="insertpdf(view.subjectContentId)"
+                                                title="اضافة ملفات لهذه الحصة">
+                                                <i class="fa fa-file"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="update(view)" title="تعديل هذه الحصة">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                            <button class="btn  pull-right" style="color: red; padding: 7px"
+                                                (click)="delete(view.subjectContentId)" title="مسح هذه الحصة">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls previousLabel="السابق" nextLabel="التالي" (pageChange)="onTableDataChange($event)"
+        class="text-center">
+    </pagination-controls>
+</div>

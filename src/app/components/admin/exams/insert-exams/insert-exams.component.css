@@ -1,0 +1,8 @@
+.selectquestion:hover {
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    text-align: right;
+}

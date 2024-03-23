@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">قائمة  باعداد الطلاب للمدرس</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم المحتوى الخاص بالمدرس</th>
+                                        <th scope="col">عدد الطلاب</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of teachers_students | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count };;let x = index" class=" ">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.beforSubjectContentName}}</td>
+                                        <td scope="row" class="p-2">{{view.studentCount}}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <pagination-controls
+    previousLabel="السابق"
+    nextLabel="التالي"
+    (pageChange)="onTableDataChange($event)"
+    class="text-center">
+    </pagination-controls>
+</div>
+
+
+
+

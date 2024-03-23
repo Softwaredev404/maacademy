@@ -1,0 +1,65 @@
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="pb-2"> قائمة الاخطارت   </h5>
+               
+                        </div>
+
+                        <div class="col-6">
+                   
+                          </div>
+
+                        <div class="col-3 header-titles">
+                            
+                                <button (click)="openAddAnnouncmentPopUp()" class="btn pull-right" type="button">
+                                    <span class="m-2">ارسل اخطار </span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col"> نص الاخطار </th>
+                                        <th scope="col"> تاريخ الاصدار</th>
+                                        <th scope="col">البريد الاكتروني</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <tr *ngFor="let item of anannouncementsList let x = index" class=" ">
+                                         <td scope="row" class="p-2">{{x+1}}</td>
+                                         <td scope="row" class="p-2">{{item.text}}</td>
+                                         <td scope="row" class="p-2">{{formatDate(item.created_at)}}</td>
+                                         <td scope="row" class="p-2">{{item.email}}</td>
+                                            <td class="font-style chose">
+                                            <button class="btn  pull-right"  
+                                                    style="color: red; padding: 7px"
+                                                    (click)="delete(item.announce_id)">
+                                                    <i class="fa fa-trash"></i></button> 
+                                            </td>
+                                 </tr>    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

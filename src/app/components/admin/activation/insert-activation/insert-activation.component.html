@@ -1,0 +1,119 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header row" style="padding-bottom: 5px !important">
+                    <div class="col-6">
+                        <h5 class="pb-2">تفعيل طالب</h5>
+
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-6 header-titles">
+                            <a class="d-block">
+                                <button class="btn pull-right" (click)="selectactive('babcontent')" type="button" *ngIf="content">
+                                    <span class="m-2"> تفعيل باب مادة</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-6 header-titles">
+                            <a class="d-block">
+                                <button class="btn pull-right" (click)="selectactive('content')" type="button" *ngIf="babcontent">
+                                    <span class="m-2"> تفعيل حصة</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <ng-template >
+                        
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "ActivateForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                             <!-- choose education level  -->
+                             <div class="col-lg-6 col-sm-12  mb-3" *ngIf="update">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الطالب</label>
+                                <ng-select  [selectOnTab]="true" formControlName="studentId"
+                                    class="form-control p-0" placeholder="اختر الطالب" 
+                                    containerClass="" 
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of students" [value]="item.studentId" [disabled]="update">{{item.email}}</ng-option>
+                                </ng-select>
+                            </div>
+                             <!-- choose education level  -->
+                             <div class="col-lg-6 col-sm-12  mb-3" *ngIf="!update">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر الطالب</label>
+                                <ng-select  [selectOnTab]="true" formControlName="studentId"
+                                    class="form-control p-0" placeholder="اختر الطالب"
+                                    containerClass="" 
+                                    
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of students" [value]="item.studentId" >{{item.email}}</ng-option>
+                                </ng-select>
+                            </div>
+                            
+                            
+                  <!-- select subjects -->
+                     <div class="col-lg-6 col-sm-12  mb-3" *ngIf="babcontent">
+                        <label for="validationCustom06"><span class="validation-required">*</span> اختر من قائمة المحتوى</label>
+                        <ng-multiselect-dropdown
+                             
+                               formControlName="beforSubjectContentIds"
+                               [placeholder]="'اختر من القائمة'"
+                               [settings]="dropdownSettingssubcourse"
+                               [data]="subcoursecontent"
+                               [(ngModel)]="selectedbeforecourse">
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <div class="col-lg-6 col-sm-12  mb-3" *ngIf="content">
+                        <label for="validationCustom06"><span class="validation-required">*</span> اختر من قائمة المحتوى</label>
+                        <ng-multiselect-dropdown
+                               [placeholder]="'اختر من القائمة'"
+                               [settings]="dropdownSettings"
+                               [data]="courses"
+                               [ngModelOptions]="{standalone: true}"
+                               [(ngModel)]="selectedItems">
+                        </ng-multiselect-dropdown>
+                    </div>
+<ng-container *ngIf="!update">
+    <div class="col-6 mb-3">
+        <label for="validation01"><span class="validation-required">*</span>  السعر</label>
+        <input class="form-control" id="validation01" type="number" formControlName="student_activation_prices"
+             
+             placeholder="السعر"
+             />
+    </div>
+    <!-- Email  -->
+    <div class="col-6 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> نسبة المدرس </label>
+        <input class="form-control" id="validation01" type="number" max="100" formControlName="teacherPercentage"
+             placeholder="نسبة المدرس "/>
+    </div>
+
+</ng-container>
+                   
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

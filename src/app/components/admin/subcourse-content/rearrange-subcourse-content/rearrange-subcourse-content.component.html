@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">قم بترتيب تصنيفات المواد كما تشاء</h5>
+               
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم محتوى المادة</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                                    <tr cdkDrag *ngFor="let view of records; let x = index">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.subjectContentName}}</td>
+                                        <td scope="row" class="p-2"></td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 my-lg-3">
+                <button  class="btn w-100" type="submit" (click)="onSubmit()">
+                    حفظ الترتيب
+                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

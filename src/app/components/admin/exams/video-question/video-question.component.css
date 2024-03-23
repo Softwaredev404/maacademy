@@ -1,0 +1,33 @@
+label {
+    display: block;
+    text-align: right;
+}
+
+angular-editor{
+    text-align: right;
+    direction: rtl;
+}
+
+.input-container{
+    position: relative;
+}
+
+.input-container input[type="file"]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8%;
+    opacity: 0;
+    z-index: 4;
+}
+
+.input-container i{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #666;
+    z-index: 2;
+    cursor: pointer;
+}

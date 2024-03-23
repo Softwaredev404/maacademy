@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header" style="padding-bottom: 5px !important">
+          <div class="row">
+            <div class="col-3">
+              <h5 class="pb-2">قائمة تصنيفات المواد</h5>
+            </div>
+
+            <div class="col-6">
+              <input class="form-control form-control-light" type="text" placeholder="ابحث باسم التصنيف او اسم المادة"
+                [(ngModel)]="filterstring" />
+            </div>
+
+            <div class="col-3 header-titles">
+              <a routerLink="/content/admin/InsertSubSubject" class="d-block">
+                <button class="btn pull-right" type="button">
+                  <span class="m-2">اضافة تصنيف مادة</span>
+                  <i class="fa fa-plus"></i>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-block row">
+          <div class="col-sm-12 col-lg-12 col-xl-12">
+            <div class="table-responsive">
+              <table class="table table-responsive-sm">
+                <thead>
+                  <tr class=" ">
+                    <th scope="col"></th>
+                    <th scope="col">اسم تصنيف المادة</th>
+                    <th scope="col">المادة</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                      let view of subsubjects
+                        | filter : filterstring
+                        | paginate
+                          : {
+                              itemsPerPage: tableSize,
+                              currentPage: page,
+                              totalItems: count
+                            };
+                      let x = index
+                    " class=" ">
+                    <td scope="row" class="p-2">{{ x + 1 }}</td>
+                    <td scope="row" class="p-2">{{ view.subSubjectName }}</td>
+                    <td scope="row" class="p-2">{{ view.subjectName }}</td>
+                    <td class="font-style chose">
+                      <button *ngIf="view.subSubjectFlag == 0" class="btn pull-right"
+                        style="color: rgba(14, 14, 14, 0.667); padding: 7px" (click)="
+                          showSubSubjectContent(
+                            view.subSubjectId,
+                            view.subSubjectFlag
+                          )
+                        " title="اظهار هذا المحتوى">
+                        <i class="fa fa-eye-slash"></i>
+                      </button>
+                      <button *ngIf="view.subSubjectFlag == 1" class="btn pull-right"
+                        style="color: rgba(14, 14, 14, 0.667); padding: 7px" (click)="
+                          showSubSubjectContent(
+                            view.subSubjectId,
+                            view.subSubjectFlag
+                          )
+                        " title="اخفاء هذا المحتوى">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                      <button class="btn pull-right" style="color: rgba(186, 79, 79, 0.667); padding: 7px"
+                        (click)="rearrangesubsubject(view.subSubjectId)" title="اعادة ترتيب تصنيفات هذا المحتوى">
+                        <i class="fa fa-spin fa-refresh"></i>
+                      </button>
+                      <button class="btn pull-right" style="color: rgba(59, 133, 99, 0.667); padding: 7px"
+                        (click)="insertsubcontent(view.subSubjectId)" title="اضافة تصنيف محتوى لتصنيف هذه المادة">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                      <button class="btn pull-right" style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                        (click)="update(view)" title=" تعديل تصنيف المادة">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button class="btn pull-right" style="color: red; padding: 7px"
+                        (click)="delete(view.subSubjectId)" title="مسح تصنيف المادة">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls previousLabel="السابق" nextLabel="التالي" (pageChange)="onTableDataChange($event)"
+    class="text-center">
+  </pagination-controls>
+</div>

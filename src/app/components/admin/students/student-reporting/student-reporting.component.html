@@ -1,0 +1,153 @@
+
+<div class="row">
+  <div class="col-xl-4 col-sm-6 box-col-6">
+    <br><br>
+    <div class="card ecommerce-widget">
+      <div class="card-body support-ticket-font">
+        <div   style="text-align: right !important;"><h1 class="text-primary">ملفات Pdf </h1></div>
+        <div class="row">
+          <div class="col-12 numbers" >
+            <div class="text-md-right" >
+              <ul style="text-align: right !important; "> 
+                <li class="" >
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                    عدد الملفات للطالب 
+                </span>
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  {{FilterData.AllowedDownload}}
+                </span>
+              </li>
+              <li>
+                <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  الملفات المحملة 
+              </span>
+                <span class="product-stts ml-2" style="font-size: 20px !important; font-weight:bold;">
+                {{FilterData.downloadsPdfNumber}}
+             </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+  <div class="col-xl-4 col-sm-6 box-col-6">
+    <br><br>
+    <div class="card ecommerce-widget">
+      <div class="card-body support-ticket-font">
+        <div   style="text-align: right !important;"><h1 class="text-primary">ملفات Pdf </h1></div>
+        <div class="row">
+          <div class="col-12 numbers" >
+            <div class="text-md-right" >
+              <ul style="text-align: right !important; "> 
+                <li class="" >
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                    عدد الملفات للطالب 
+                </span>
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  {{FilterData.AllowedDownload}}
+                </span>
+              </li>
+              <li>
+                <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  الملفات المحملة 
+              </span>
+                <span class="product-stts ml-2" style="font-size: 20px !important; font-weight:bold;">
+                {{FilterData.downloadsPdfNumber}}
+             </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+  <div class="col-xl-4 col-sm-6 box-col-6">
+    <br><br>
+    <div class="card ecommerce-widget">
+      <div class="card-body support-ticket-font">
+        <div   style="text-align: right !important;"><h1 class="text-primary">ملفات Pdf </h1></div>
+        <div class="row">
+          <div class="col-12 numbers" >
+            <div class="text-md-right" >
+              <ul style="text-align: right !important; "> 
+                <li class="" >
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                    عدد الملفات للطالب 
+                </span>
+                  <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  {{FilterData.AllowedDownload}}
+                </span>
+              </li>
+              <li>
+                <span class="product-stts  ml-2" style="font-size: 20px !important; font-weight:bold;">
+                  الملفات المحملة 
+              </span>
+                <span class="product-stts ml-2" style="font-size: 20px !important; font-weight:bold;">
+                {{FilterData.downloadsPdfNumber}}
+             </span>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <br><br><br><br>
+      <div>
+        <h1 class="text-center">تقييم الامتحانات</h1><br><br>
+        <canvas id="myChart1" class="m-auto"></canvas>
+      </div>
+      </div>
+    </div>
+   </div> 
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">قائمة الامتحانات</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">الحصة</th>
+                                        <th scope="col">الدرجة النهائية للامتحان</th>
+                                        <th scope="col">درجة الطالب</th>
+                                             
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr cdkDrag *ngFor="let view of FilterDataExams">
+                                        <td scope="row" class="p-2">{{view.subjectName}}</td>
+                                        <td scope="row" class="p-2">{{view.totalofexam}}</td>
+                                        <td scope="row" class="p-2">{{view.grade}}</td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

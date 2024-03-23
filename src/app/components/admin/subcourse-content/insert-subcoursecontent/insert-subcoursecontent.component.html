@@ -1,0 +1,63 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">اضافة تصنيف محتوى مادة جديد</h5>
+
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template >
+                        
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "subcoursecontentForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Subject Content Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم تصنيف محتوى المادة</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="beforSubjectContentName"
+                                [tooltip]="fc.beforSubjectContentName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.beforSubjectContentName.valid && (fc.beforSubjectContentName.touched)"
+                                [class.is-invalid]="fc.beforSubjectContentName.invalid && (fc.beforSubjectContentName.touched)"
+                                     required
+                                     appDisableWeritingEnglish
+                                     placeholder="اسم تصنيف محتوى المادة"
+                                    containerClass="" />
+                            </div>
+                            <!-- Education Level -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر تصنيف المادة</label>
+                                <ng-select #Governorate  [selectOnTab]="true" formControlName="subSubjectId"
+                                    class="form-control p-0" placeholder="اختر تصنيف المادة"
+                                    containerClass="" 
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of subsubjects" [value]="item.subSubjectId">{{item.subSubjectName}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

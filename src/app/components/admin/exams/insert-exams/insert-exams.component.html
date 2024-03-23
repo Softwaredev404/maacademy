@@ -1,0 +1,274 @@
+<div class="container">
+  <button class="btn w-100 mt-5" (click)="Exam()">سؤال جديد</button>
+</div>
+
+<!-- ======================================================================================================================================== -->
+<!--                                          Questions Of The Exams                                                                          -->
+<!-- ======================================================================================================================================== -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-12" *ngFor="let view of Exams">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-9">
+              <h5>سؤال :- {{view.qusetion}}</h5>
+            </div>
+            <div class="col-3">
+              <button class="btn pull-left"
+                style="color: rgba(35, 118, 241, 0.667);background-color: white !important; padding: 7px"
+                (click)="Update(view)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="btn  pull-left" style="color: red;background-color: white !important; padding: 7px"
+                (click)="delete(view.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p [ngSwitch]="view.typeid">
+            <span *ngSwitchCase="'1'">
+              <input type="text" class="form-control w-100">
+            </span>
+            <span *ngSwitchCase="'2'">
+              <span><input type="radio" class="mx-3">{{view.firstChoice}}</span>
+              <span><input type="radio" class="mx-3">{{view.secondChoice}}</span>
+              <span><input type="radio" class="mx-3">{{view.thirdChoice}}</span>
+              <span><input type="radio" class="mx-3">{{view.fourChoice}}</span>
+            </span>
+            <span *ngSwitchCase="'3'">
+              <span><input type="radio" class="mx-3">صح</span>
+              <span><input type="radio" class="mx-3">خطأ</span>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- ======================================================================================================================================== -->
+<!-- ======================================================================================================================================== -->
+
+<app-choose-question></app-choose-question>
+<app-true-false></app-true-false>
+<app-essay></app-essay>
+<app-video-question></app-video-question>
+
+<!-- <div class="card-body" *ngIf="question1">
+  <form class="needs-validation" autocomplete="off" [formGroup]="ExamForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+      
+      <div class="col-6 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> رأس السؤال</label>
+        <input class="form-control" id="validation01" type="text" formControlName="question"
+          [tooltip]="fc.question.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.question.valid && (fc.question.touched)"
+          [class.is-invalid]="fc.question.invalid && (fc.question.touched)" required
+          placeholder="اكتب نص السؤال المقالي" />
+      </div>
+      
+      <div class="col-6 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="questionImage"
+          [tooltip]="fc.questionImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.questionImage.valid && (fc.questionImage.touched)"
+          [class.is-invalid]="fc.questionImage.invalid && (fc.questionImage.touched)" required
+          placeholder="اكتب نص السؤال المقالي" />
+      </div>
+      
+      <div class="col-12 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> اكتب هنا الاجابة النموذجية</label>
+        <textarea class="form-control" id="validation01" type="text" formControlName="fitanswer"
+          [tooltip]="fc.fitanswer.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.fitanswer.valid && (fc.fitanswer.touched)"
+          [class.is-invalid]="fc.fitanswer.invalid && (fc.fitanswer.touched)" required
+          placeholder="اكتب الاجابة النموذجية"></textarea>
+      </div>
+    </div>
+    <br>
+    <button class="btn pull-right" type="submit">
+      حفظ
+    </button>
+  </form>
+</div>
+<div class="card-body" *ngIf="question2">
+  <form class="needs-validation" autocomplete="off" [formGroup]="ExamForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+      
+      <div class="col-12 mb-3">
+        <label><span class="validation-required">*</span> رأس السؤال</label>
+        <div class="card-body" style="padding: 0px !important; ">
+          <angular-editor [config]="editorConfig" style="direction: rtl;text-align: right;"
+            formControlName="question"></angular-editor>
+        </div>
+      </div>
+      
+      <div class="col-12 mb-3">
+        <label>رابط صورة</label>
+        <input class="form-control" type="text" formControlName="questionImage" placeholder="رابط صورة" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> الاختيار الاول</label>
+        <input class="form-control" id="validation01" type="text" formControlName="firstChoice"
+          [tooltip]="fc.firstChoice.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.firstChoice.valid && (fc.firstChoice.touched)"
+          [class.is-invalid]="fc.firstChoice.invalid && (fc.firstChoice.touched)" required
+          placeholder="الاختيار الاول" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="firstChoiceImage"
+          [tooltip]="fc.firstChoiceImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.firstChoiceImage.valid && (fc.firstChoiceImage.touched)"
+          [class.is-invalid]="fc.firstChoiceImage.invalid && (fc.firstChoiceImage.touched)" required
+          placeholder="صورة الاختيار الاول" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> الاختيار الثاني</label>
+        <input class="form-control" id="validation01" type="text" formControlName="secondChoice"
+          [tooltip]="fc.secondChoice.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.secondChoice.valid && (fc.secondChoice.touched)"
+          [class.is-invalid]="fc.secondChoice.invalid && (fc.secondChoice.touched)" required
+          placeholder="الاختيار الثاني" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="secondChoiceImage"
+          [tooltip]="fc.secondChoiceImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.secondChoiceImage.valid && (fc.secondChoiceImage.touched)"
+          [class.is-invalid]="fc.secondChoiceImage.invalid && (fc.secondChoiceImage.touched)" required
+          placeholder="صورة الاختيار الثاني" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> الاختيار الثالث</label>
+        <input class="form-control" id="validation01" type="text" formControlName="thirdChoice"
+          [tooltip]="fc.thirdChoice.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.thirdChoice.valid && (fc.thirdChoice.touched)"
+          [class.is-invalid]="fc.thirdChoice.invalid && (fc.thirdChoice.touched)" required
+          placeholder="الاختيار الثالث" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="thirdChoiceImage"
+          [tooltip]="fc.thirdChoiceImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.thirdChoiceImage.valid && (fc.thirdChoiceImage.touched)"
+          [class.is-invalid]="fc.thirdChoiceImage.invalid && (fc.thirdChoiceImage.touched)" required
+          placeholder="صورة الاختيار الرابع" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> الاختيار الرابع</label>
+        <input class="form-control" id="validation01" type="text" formControlName="fourChoice"
+          [tooltip]="fc.fourChoice.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.fourChoice.valid && (fc.fourChoice.touched)"
+          [class.is-invalid]="fc.fourChoice.invalid && (fc.fourChoice.touched)" required
+          placeholder="الاختيار الرابع" />
+      </div>
+      
+      <div class="col-3 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="fourChoiceImage"
+          [tooltip]="fc.fourChoiceImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.fourChoiceImage.valid && (fc.fourChoiceImage.touched)"
+          [class.is-invalid]="fc.fourChoiceImage.invalid && (fc.fourChoiceImage.touched)" required
+          placeholder="صورة الاختيار الرابع" />
+      </div>
+      
+      <div class="col-lg-6  mb-3">
+        <label for="validationCustom05"><span class="validation-required">*</span> اختار الاجابة الصحيحة</label>
+        <ng-select [selectOnTab]="true" formControlName="correctChoice" class="form-control p-0"
+          placeholder="اختر الاجابة الصحيحة" id="validationCustom05">
+          <ng-option *ngFor="let item of questionDropDown" [value]="item.text">{{item.type}}</ng-option>
+        </ng-select>
+      </div>
+      <div class="col-lg-6 p-5">
+        <input class="form-check-input" type="checkbox" value="true" formControlName="commentAnswer"
+          id="flexCheckIndeterminate">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+          <h5>اضافة تعليل لاجابته</h5>
+        </label>
+      </div>
+
+    </div>
+    <br>
+    <button class="btn pull-right" type="submit">
+      حفظ
+    </button>
+  </form>
+</div>
+<div class="card-body" *ngIf="question3">
+  <form class="needs-validation" autocomplete="off" [formGroup]="ExamForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+      
+      <div class="col-12 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> رأس السؤال</label>
+        <input class="form-control" id="validation01" type="text" formControlName="question"
+          [tooltip]="fc.question.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.question.valid && (fc.question.touched)"
+          [class.is-invalid]="fc.question.invalid && (fc.question.touched)" required placeholder="اكتب نص السؤال"
+          containerClass="" />
+      </div>
+      
+      <div class="col-12 mb-3">
+        <label for="validation01"><span class="validation-required"></span> رابط صورة</label>
+        <input class="form-control" id="validation01" type="text" formControlName="questionImage"
+          [tooltip]="fc.questionImage.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.questionImage.valid && (fc.questionImage.touched)"
+          [class.is-invalid]="fc.questionImage.invalid && (fc.questionImage.touched)" required placeholder="صورة للسؤال"
+          containerClass="" />
+      </div>
+      
+      <div class="col-12 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> الاجابة الصحيحة</label>
+      </div>
+      <div class="col-6 mb-3 px-5">
+        <div class="radio radio-primary">
+          <input id="radioinline1" type="radio" formControlName="correctChoice" value="true">
+          <label class="mb-0" for="radioinline1"> صح</label>
+        </div>
+        <div class="radio radio-primary">
+          <input id="radioinline2" type="radio" formControlName="correctChoice" value="false">
+          <label class="mb-0" for="radioinline2"> خطأ</label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="btn pull-right" type="submit">
+      حفظ
+    </button>
+  </form>
+</div>
+<div class="card-body" *ngIf="question4">
+  <form class="needs-validation" autocomplete="off" [formGroup]="ExamForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-row">
+      
+      <div class="col-6 mb-3">
+        <label for="validation01"><span class="validation-required">*</span> ارفق رابط الفيديو</label>
+        <input class="form-control" id="validation01" type="text" formControlName="question"
+          [tooltip]="fc.question.errors?.required ? 'الحقل مطلوب' : null"
+          [class.is-valid]="fc.question.valid && (fc.question.touched)"
+          [class.is-invalid]="fc.question.invalid && (fc.question.touched)" required placeholder="اكتب رابط الفيديو" />
+      </div>
+    </div>
+    <br>
+    <button class="btn pull-right" type="submit">
+      حفظ
+    </button>
+  </form>
+</div> -->
+
+<div class="card-body" *ngIf="button">
+  <input class="form-control" id="validation01" type="text" [(ngModel)]="timerinput"
+    (input)="onInputChange($event.target.value)" required placeholder="اكتب وقت الامتحان" />
+  <button class="btn pull-right mt-3" [disabled]="btnstop" (click)="examSubmit()">
+    حفظ المتحان
+  </button>
+</div>

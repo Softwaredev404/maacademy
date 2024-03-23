@@ -1,0 +1,33 @@
+<div class="card-block row">
+    <div class="col-sm-12 col-lg-12 col-xl-12">
+        <div class="table-responsive">
+            <table class="table table-responsive-sm ">
+                <thead>
+                    <tr class=" ">
+                        <th scope="col"></th>
+                        <th scope="col">المحتوي </th>
+                        <th scope="col"> التاريخ</th>
+                        <th scope="col">  اجمالي المدفوع</th>
+                        <th scope="col"> نسبة المدرس</th>
+                             
+                        <th scope="col">
+المستحق للمدرس
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rec of paymenthistory let x = index">
+                        <td scope="row" class="p-2">{{x+1}}</td>
+                        <td scope="row" class="p-2">{{rec.beforSubjectContentName}}</td>
+                        <td scope="row" class="p-2">{{formatDate(rec.created_at)}}</td>
+                        <td scope="row" class="p-2">{{rec.student_activation_prices}}</td>
+                        <td scope="row" class="p-2 text-danger fw-2">{{rec.teacherPercentage}} %</td>
+                        <td scope="row" class="p-2 text-danger fw-2">{{rec.student_activation_prices / 100 * rec.teacherPercentage}}</td>
+
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+         
+    </div>
+</div>

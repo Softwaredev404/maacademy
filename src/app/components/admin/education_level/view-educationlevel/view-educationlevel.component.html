@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">قائمة المراحل الدراسية</h5>
+               
+                        </div>
+
+                        <div class="col-6 header-titles">
+                            <a routerLink="/content/admin/InsertEducationLevel" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">اضافة مرحلة دراسية</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم المرحلة الدراسية</th>
+                                        <th scope="col">Education Level</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of educationlevels | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count }; let x = index" class=" ">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.nameAr}}</td>
+                                        <td scope="row" class="p-2">{{view.nameEn}}</td>
+                                        
+                                            <td class="font-style chose">
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                    (click)="update(view)">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                   <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                   (click)="delete(view.educationId)">
+                                                    <i class="fa fa-trash"></i>
+                                                       </button>
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls
+    previousLabel="السابق"
+    nextLabel="التالي"
+    (pageChange)="onTableDataChange($event)"
+    class="text-center">
+    </pagination-controls>
+</div>
+
+
+
+

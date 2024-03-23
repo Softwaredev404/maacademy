@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div>
+                        <h5 class="pb-2">عرض جديد</h5>
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 header-titles">
+                            <a class="d-block mx-1" (click)="selectpackage(1)">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">عرض لابواب المواد</span>
+                                </button>
+                            </a>
+                            <a class="d-block mx-1" (click)="selectpackage(2)">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">عروض لحصص المواد</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "OfferFrom"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                             
+                            <!-- from date  -->
+                            <div class="col-6 mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> العرض مفعل من</label>
+                                <input class="form-control" id="validation01" type="date"
+                                [tooltip]="fc.date_start.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.date_start.valid && (fc.date_start.touched)"
+                                [class.is-invalid]="fc.date_start.invalid && (fc.date_start.touched)"
+                                     required
+                                     placeholder=""
+                                     formControlName="date_start"
+                                    containerClass="" />  
+                            </div>
+                            <!-- to date  -->
+                            <div class="col-6 mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> العرض مفعل الى</label>
+                                <input class="form-control" id="validation01" type="date"
+                                [tooltip]="fc.date_end.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.date_end.valid && (fc.date_end.touched)"
+                                [class.is-invalid]="fc.date_end.invalid && (fc.date_end.touched)"
+                                     required
+                                     placeholder=""
+                                     formControlName="date_end"
+                                    containerClass="" />  
+                            </div>
+
+                            <div [ngSwitch]="case" class="col-6 mb-3">
+                                <div class="w-100" *ngSwitchCase="'1'">
+                                    <!-- subcoursecontent -->
+                            <div>
+                                <label for="validationCustom06"><span class="validation-required">*</span> اختر ابواب العرض</label>
+                                <ng-multiselect-dropdown
+                                       [placeholder]="'اختر محتوى المواد'"
+                                       [settings]="dropdownSettings"
+                                       [data]="subcoursecontent"
+                                      [(ngModel)]="selectedsubcoursecontent"
+                                      [ngModelOptions]="{standalone: true}">
+                                </ng-multiselect-dropdown>
+                            </div>
+                                </div>
+                                <div *ngSwitchCase="'2'">
+                                          <!-- subcoursecontent -->
+                            <div>
+                                <label for="validationCustom06"><span class="validation-required">*</span> اختر حصص العرض</label>
+                                <ng-multiselect-dropdown
+                                       [placeholder]="'اختر الحصة'"
+                                       [settings]="dropdownSettingscourse"
+                                       [data]="subcourse"
+                                      [(ngModel)]="selectedsubcourse"
+                                      [ngModelOptions]="{standalone: true}">
+                                </ng-multiselect-dropdown>
+                            </div>
+                                </div>
+                                <div *ngSwitchDefault>Default content</div>
+                              </div>
+                            
+                            <!-- name of the offer -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم العرض</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="name"
+                                [tooltip]="fc.name.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.name.valid && (fc.name.touched)"
+                                [class.is-invalid]="fc.name.invalid && (fc.name.touched)"
+                                 required placeholder="اكتب اسم العرض" />
+                            </div>
+                            <!-- QrCode -->
+                            <div class="col-6 mb-3">
+                                <input class="form-control" id="validation01" type="text" [(ngModel)]="NumberOfStudents" [ngModelOptions]="{standalone: true}"
+                                     required
+                                     placeholder="اكتب عدد الطلاب المراد تفعيلهم لهذا العرض"
+                                    containerClass="" onlyNumbers (input)="checknumberofstudents()"/>  
+                            </div>
+                            <!-- Button to generate the qr codes -->
+                            <div class="col-3 mb-3">
+                            <button (click)="getQRCodes()" class="btn" type="button" [disabled]="qrbutton">
+                                اضغط لانتاج QR Codes
+                            </button>
+                            </div>
+                            <!-- Button to print the qr codes -->
+                            <div class="col-3 mb-3">
+                            <button (click)="printQRCode()" class="btn" type="button" [disabled]="printqrbutton">
+                                اضغط لطباعة QR Codes
+                            </button>
+                            </div>
+                            <div id="printDiv" class="col-12 row">
+                            <div class="col-lg-3" *ngFor="let view of QrCode;let x = index">
+                                <label for="validation01"><span class="validation-required"></span> الماسح الضوئي رقم {{x + 1}}</label>
+                                <ngx-qrcode style="width: 80%; height: 220px;"
+                                class="m-auto " [elementType]="elementType" [value]="view" cssClass="aclass"></ngx-qrcode>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

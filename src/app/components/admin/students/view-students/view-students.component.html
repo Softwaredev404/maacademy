@@ -1,0 +1,129 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-2">
+                            <h5 class="pb-2">قائمة الطلاب</h5>
+                        </div>
+
+                        <div class="col-2">
+                            <h5 class="text-danger">[ {{ numberofstudents }} طالب ]</h5>
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control form-control-light" type="text"
+                                (keydown)="dectectBackSlash($event)" (ngModelChange)="searchInStudents($event)"
+                                placeholder="ابحث باسم الطالب او بالرقم التسلسلي او البريد الالكتروني"
+                                [(ngModel)]="filterstring">
+                        </div>
+
+                        <div class="col-3 header-titles">
+                            <a routerLink="/content/admin/InsertStudents" class="d-block">
+                                <button class="btn pull-right" type="button" title="اضافة طالب">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+
+                            <a class="d-block">
+                                <button class="btn pull-right" style="color: rgba(255, 255, 255, 1);"
+                                    title="الغاء تفعيل الهاتف لكل الطلاب" (click)="removeAllIps()">
+                                    <i class="fa fa-mobile"></i>
+                                </button>
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم الطالب</th>
+                                        <th scope="col">المرحلة الدراسية</th>
+                                        <th scope="col"> البريد الالكتروني</th>
+                                        <th scope="col"> الرقم التسلسلي</th>
+
+                                        <th scope="col">
+
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of students | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: numberofstudents }; let x = index">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.studentName}}</td>
+                                        <td scope="row" class="p-2">{{view.nameAr}}</td>
+                                        <td scope="row" class="p-2">{{view.email}}</td>
+                                        <td scope="row" class="p-2 text-danger fw-2">{{view.code}}</td>
+                                        <!-- <td scope="row" class="p-2"><a (click)="showimage(view.StudentImage)"><img [src]="img + view.StudentImage" width="20px" height="20px" alt=""></a></td> -->
+
+                                        <td class="font-style chose">
+                                            <button class="btn pull-right"
+                                                style="color: rgba(199, 57, 32, 0.667); padding: 7px"
+                                                title="اداء الطالب" (click)="student_reporting(view.studentId)">
+                                                <i class="fa fa-bar-chart"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(199, 57, 32, 0.667); padding: 7px"
+                                                title="الغاء تفعيل الهاتف على الحساب"
+                                                (click)="removethemobile(view.studentId)">
+                                                <i class="fa fa-mobile"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(176, 72, 11, 0.667); padding: 7px"
+                                                (click)="updateactivate(view.studentId)"
+                                                title="تعديل او حذف تفعيل المواد على هذا الحساب">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(176, 72, 11, 0.667); padding: 7px"
+                                                (click)="addcontent(view)" title="اضافة محتوى مواد لهذا الحساب">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="update(view)" title="تعديل تفاصيل الحساب">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="viewPaymentHistory(view.studentId)"
+                                                title="تاريخ المدفوعات للطلب">
+                                                <i class="fa fa-folder"></i>
+                                            </button>
+                                            <button class="btn  pull-right" style="color: red; padding: 7px"
+                                                (click)="delete(view.studentId)" title="حذف هذا الطالب">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls previousLabel="السابق" nextLabel="التالي" (pageChange)="onTableDataChange($event)"
+        class="text-center">
+    </pagination-controls>
+</div>
+<div class="custompopwindow-overlay" *ngIf="showPopUp">
+    <div class="custompopwindow">
+        <button (click)="close()"> close</button>
+        <app-paymenthistorytable [paymenthistory]=paymentsHistory></app-paymenthistorytable>
+
+    </div>
+
+</div>

@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">الطلبة المفعلين <span class="fs-1 text-danger">[ {{NumberOfActivateStudents}} طالب ]</span></h5>
+                           <span>عدد الطلبة المفعلين على هذ التصنيف </span>
+                        </div>
+                        <!-- <div class="col-6">
+                            <input class="form-control form-control-light" type="text" 
+                            placeholder="ابحث باسم الطالب او بالرقم التسلسلي او البريد الالكتروني" [(ngModel)]="filterstring">
+                          </div> -->
+                        <div class="col-6">
+                            <button class="btn pull-right mx-2" type="button" (click)="onSubmit()">
+                                <span class="m-2">الغاء التفعيل [ {{numberofstudents}} ]</span>
+                            </button>
+                            <button class="btn pull-right mx-2" type="button" (click)="selectallstudents()">
+                                <span class="m-2">اختر جميع الطلبة</span>
+                            </button>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm text-center">
+                                <thead>
+                                    <tr class="">
+                                        <th scope="col">#</th>
+                                        <th scope="col">اسم الطالب</th>
+                                        <th scope="col">البريد الالكتروني</th>         
+                                        <th scope="col">الموقع</th>         
+                                        <th scope="col">الرقم التسلسلي</th>         
+                                        <th scope="col" *ngIf="allstudents">الغاء تفعيل الطالب</th>         
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let view of ActivatedStudents |filter:filterstring;let x = index" class=" ">
+                                        <tr *ngIf="view.is_test == 0">
+                                            <td scope="row" class="p-2">{{x+1}}</td>
+                                            <td scope="row" class="p-2">{{view.studentName}}</td>
+                                            <td scope="row" class="p-2">{{view.email}}</td>
+                                            <td scope="row" class="p-2">{{view.location}}</td>
+                                            <td scope="row" class="p-2">{{view.code}}</td>
+                                            <td scope="row" class="p-2" *ngIf="allstudents">
+                                                    <input type="checkbox" value="view.studentId" id="view.studentId" (change)="selectstudent(view.studentId)">
+                                            </td>                                         
+                                            <!-- <td class="font-style chose">
+                                                    <button class="btn  pull-right"  style="color: red; padding: 7px">
+                                                    <i class="fa fa-trash"></i>
+                                                       </button>
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px" >
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                            </td> -->
+                                        </tr>
+
+                                    </ng-container>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

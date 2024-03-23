@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-4">
+                            <h5 class="pb-2"> قائمة طلبات  <span *ngIf="exam">Exam</span> <span *ngIf="pdf">Pdf</span></h5>
+                        </div>
+
+                        <div class="col-4 header-titles">
+                            <a (click)="getPdfteachersRequests()" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">طلبات الPdf للمدرسين</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-4 header-titles">
+                            <a (click)="getExamteachersRequests()" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">طلبات الExam للمدرسين</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم الطلب</th>
+                                        <th scope="col">اسم المدرس</th>
+                                        <th scope="col">محتوى المادة</th>
+                                        <th scope="col" *ngIf="pdf">الملف</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of teacherRequests | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count };;let x = index" class=" ">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.namePdf}}</td>
+                                        <td scope="row" class="p-2">{{view.teacherName}}</td>
+                                        <td scope="row" class="p-2">{{view.subjectContentName}}</td>
+                                        <td scope="row" class="p-2" *ngIf="pdf">
+                                            <button
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px">
+                                                    <a href='https://www.maapp.misrpedia.com/public/{{view.pdfs}}' target="_blank">
+                                                        <i class="fa fa-file"></i>
+                                                    </a>
+                                            </button>
+                                        </td>
+                                            <td class="font-style chose" *ngIf="pdf">
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                    (click)="acceptRequest(view.id)">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                   <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                   (click)="denyRequest(view.id)">
+                                                    <i class="fa fa-thumbs-down"></i>
+                                                       </button>
+                                            </td>
+                                            <td class="font-style chose" *ngIf="exam">
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                    (click)="acceptRequest(view.exam_id)">
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </button>
+                                                   <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                   (click)="denyRequest(view.exam_id)">
+                                                    <i class="fa fa-thumbs-down"></i>
+                                                       </button>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls
+    previousLabel="السابق"
+    nextLabel="التالي"
+    (pageChange)="onTableDataChange($event)"
+    class="text-center">
+    </pagination-controls>
+</div>
+
+
+
+

@@ -1,0 +1,161 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div>
+                        <h5 class="pb-2">اضافة محتوى مادة</h5>
+
+                        <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" [formGroup]="CourseLectureForm"
+                        (ngSubmit)="onSubmit()" novalidate>
+                        <div class="form-row">
+                            <!-- Subject Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم محتوى
+                                    المادة</label>
+                                <input class="form-control" id="validation01" type="text"
+                                    formControlName="subjectContentName"
+                                    [tooltip]="fc.subjectContentName.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.subjectContentName.valid && (fc.subjectContentName.touched)"
+                                    [class.is-invalid]="fc.subjectContentName.invalid && (fc.subjectContentName.touched)"
+                                    required placeholder="اكتب اسم محتوى المادة" containerClass="" />
+                            </div>
+                            <!-- price  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> سعر المادة</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="price"
+                                    [tooltip]="fc.price.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.price.valid && (fc.price.touched)"
+                                    [class.is-invalid]="fc.price.invalid && (fc.price.touched)" onlyNumbers required
+                                    placeholder="اكتب سعر المادة" containerClass="" />
+                            </div>
+                            <!-- videoURL  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الرابط
+                                    للفيديو</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="videoURL"
+                                    [tooltip]="fc.videoURL.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.videoURL.valid && (fc.videoURL.touched)"
+                                    [class.is-invalid]="fc.videoURL.invalid && (fc.videoURL.touched)" required
+                                    placeholder="ادخل رابط الفيديو" containerClass="" />
+                            </div>
+                            <!-- description  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> وصف محتوى
+                                    المادة</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="description"
+                                    [tooltip]="fc.description.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.description.valid && (fc.description.touched)"
+                                    [class.is-invalid]="fc.description.invalid && (fc.description.touched)" required
+                                    placeholder="اكتب وصف لمحتوى المادة" containerClass="" />
+                            </div>
+                            <!-- choose course -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر
+                                    المادة</label>
+                                <ng-select (change)="getSubSubject($event)" #Governorate [selectOnTab]="true"
+                                    formControlName="subjectId" class="form-control p-0" placeholder="اختر مادة"
+                                    containerClass="" id="validationCustom05">
+                                    <ng-option *ngFor="let item of courses"
+                                        [value]="item.subjectId">{{item.subjectName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- choose sub course -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر تصنيف
+                                    المادة</label>
+                                <ng-select (change)="getBeforeSubjectContent($event)" #Governorate [selectOnTab]="true"
+                                    formControlName="subSubjectId" class="form-control p-0"
+                                    placeholder="اختر تصنيف المادة" id="validationCustom05">
+                                    <ng-option *ngFor="let item of subSubjects"
+                                        [value]="item.subSubjectId">{{item.subSubjectName}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- choose sub course -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر تصنيف
+                                    محتوى المادة</label>
+                                <ng-select #Governorate [selectOnTab]="true" formControlName="beforSubjectContentId"
+                                    class="form-control p-0" placeholder="اختر تصنيف محتوى المادة"
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of beforSubjectContent"
+                                        [value]="item.beforSubjectContentId">{{item.beforSubjectContentName}}</ng-option>
+                                </ng-select>
+                            </div>
+
+                            <!-- teacher -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="validationCustom06"><span class="validation-required">*</span> اختر
+                                    المدرس</label>
+                                <ng-multiselect-dropdown formControlName="teacherId" [placeholder]="'اختر من القائمة'"
+                                    [settings]="dropdownSettings" [data]="teachers" [(ngModel)]="selectedItems">
+                                </ng-multiselect-dropdown>
+                            </div>
+
+                            <!-- date -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="setDate"><span class="validation-required"></span>تاريخ التنزيل علي
+                                    التطبيق</label>
+                                <input class="form-control" type="date" [min]="minDate" data-date-format="y-m-d"
+                                    placeholder="" formControlName="setDate" containerClass="" />
+                            </div>
+
+
+                            <!-- QrCode  -->
+                            <div class="col-6 mb-3" *ngIf="update == false">
+                                <label for="validation01"><span class="validation-required"></span> المساح الضوئي
+                                    للحصة</label>
+                                <ngx-qrcode style="width: 60%; height: 220px;" [elementType]="elementType"
+                                    [value]="QrCode" cssClass="aclass"></ngx-qrcode>
+
+                                <input class="form-control" id="validation01" type="text" [(ngModel)]="QrCode"
+                                    [ngModelOptions]="{standalone: true}" required placeholder="اكتب ما يميز الحصة"
+                                    containerClass="" />
+                            </div>
+                            <div class="col-6 mb-3" *ngIf="update == true">
+                                <label for="validation01" style="font-size: 1.5rem; font-weight: 700;"><span
+                                        class="validation-required"></span> اكتب لينك الزووم</label>
+                                <input class="form-control" id="validation01" type="text" [(ngModel)]="zoom"
+                                    [ngModelOptions]="{standalone: true}" required placeholder="اكتب لينك الزووم"
+                                    containerClass="" />
+                            </div>
+
+                            <!-- to insert image for the student  -->
+                            <div class="col-lg-6 my-4" style="padding: 1%;">
+                                <img src="{{ imageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2"
+                                    *ngIf="imageLogo != null" />
+                                <input type="file" accept="image/*" #file id="getLogo" style="display: none"
+                                    (change)="getLogoUrl($event)" />
+                                <button type="button" onclick="document.getElementById('getLogo').click()"
+                                    class="btn  d-block" style="width: 60%;">
+                                    ارفاق صورة للمحتوى
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                                حفظ
+                            </button>
+                        </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+@import "./assets/scss/app.scss";
+@import '~ngx-print-element/styles.css';
+
+.router-wrapper  {
+    position:  relative;
+    overflow:  hidden;
+    width:  100vw;
+    height:  calc(100%  -  47px);
+    perspective:  1200px;
+    transform-style:  preserve-3d;
+}
+
+:host  {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #60d7a9;
+}
+ 
+@import "@fontsource/cairo"; // Defaults to weight 400.
+
+
+ 
+
+body   {
+    font-family: "Cairo" !important; 
+  }
+
+  select{
+
+    padding: 5px;
+}
+ngx-qrcode{
+    > div{
+        > img{
+           width: 50% !important;
+        }
+    }
+}
+
+body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+.dropdown-multiselect__caret{
+    right: 93% !important;
+    top: 3px !important;
+}
+
+span .selected-item{
+    max-width: 100% !important;
+}
+.selected-item-container{
+    float: right !important;
+}
+.aclass{
+    text-align: center !important;
+}
+thead{
+    text-align: center;
+}
+tbody{
+    text-align: center;
+}
+button{
+    border: none;
+}
+
+.bg-transparent{
+    background-color: transparent !important;
+}
+.btn{
+    background-color: blue !important;
+}
+.dropdown-btn {
+    text-align: right !important;
+}
+
+.multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret{
+    line-height:16px;
+    display:block;
+    position:absolute;
+    box-sizing:border-box;
+    width:40px;
+    height:38px;
+    top:0;
+    padding:4px 8px;
+    margin:0;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    transition:transform .2s;
+}
+._caret{
+    left: 1px !important;
+}
+.dropdown-multiselect__caret{
+    left:1px !important;    
+}
+._select {
+    display: inline-block;
+    /* width: 100%; */
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+   
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    
+}
+
+ 
+
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

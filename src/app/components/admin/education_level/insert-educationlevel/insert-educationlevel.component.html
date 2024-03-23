@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">مرحلة دراسية جديدة</h5>
+
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template >
+                        
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "educationlevelForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Education Level Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم المرحلة الدراسية باللغة العربية</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="nameAr"
+                                [tooltip]="fc.nameAr.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.nameAr.valid && (fc.nameAr.touched)"
+                                [class.is-invalid]="fc.nameAr.invalid && (fc.nameAr.touched)"
+                                     required
+                                     appDisableWeritingEnglish
+                                     placeholder="اسم المرحلة الدراسية"
+                                    containerClass="" />
+                            </div>
+                            <!-- Education Level Name English -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم المرحلة الدراسية باللغة الانجليزية</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="nameEn"
+                                [tooltip]="fc.nameEn.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.nameEn.valid && (fc.nameEn.touched)"
+                                [class.is-invalid]="fc.nameEn.invalid && (fc.nameEn.touched)"
+                                     required
+                                     appDisableWeritingArabic
+                                     placeholder="اسم المرحلة الدراسية"
+                                    containerClass="" />
+                            </div>
+                          
+                        </div>
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5 class="pb-2">قائمة التفعيلات</h5>
+                        </div>
+
+                        <div class="col-6">
+                            <input class="form-control form-control-light" type="text" 
+                            placeholder="ابحث بالبريد الالكتروني او الرقم التعريفي" [(ngModel)]="filterstring">
+                          </div>
+
+                        <div class="col-3 header-titles">
+                            <a routerLink="/content/admin/InsertActivation" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">تفعيل طالب</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr class=" ">
+                                        <th scope="col"></th>
+                                        <th scope="col">البريد الالكتروني</th>
+                                        <th scope="col">الرقم التعريفي</th>  
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of activations |filter:filterstring;let x = index" class=" ">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.email}}</td>
+                                        <td scope="row" class="p-2">{{view.code}}</td>
+                                       
+                                            <td class="font-style chose">
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                    (click)="update(view)" title="تعديل تفعيل الطالب">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                   <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                   (click)="delete(view.studentSujectContentId)" title="مسح تفعيل الطالب">
+                                                    <i class="fa fa-trash"></i>
+                                                       </button>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

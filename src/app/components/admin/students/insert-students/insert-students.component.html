@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">طالب جديد</h5>
+
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template >
+                        
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "StudentForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- Student Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم الطالب</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="studentName"
+                                [tooltip]="fc.studentName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.studentName.valid && (fc.studentName.touched)"
+                                [class.is-invalid]="fc.studentName.invalid && (fc.studentName.touched)"
+                                
+                                     required
+                                     placeholder="الأسم"
+                                    containerClass="" />
+                            </div>
+                              <!-- email  -->
+                              <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> البريد الالكتروني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="email"
+                                [tooltip]="fc.email.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.email.valid && (fc.email.touched)"
+                                [class.is-invalid]="fc.email.invalid && (fc.email.touched)"
+                                     required
+                                     placeholder="اكتب البريد الالكتروني"
+                                    containerClass="" />
+                            </div>
+                             <!-- gender -->
+                             <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر النوع</label>
+                                <ng-select #Governorate  [selectOnTab]="true" formControlName="gender"
+                                    class="form-control p-0" placeholder="اختر نوع"
+                                    containerClass="" 
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of gender" [value]="item">{{item}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- password  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> الرقم السري</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="password"
+                                [tooltip]="fc.password.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.password.valid && (fc.password.touched)"
+                                [class.is-invalid]="fc.password.invalid && (fc.password.touched)"
+                                     required
+                                     placeholder="مثال (Ne_w12@34)"
+                                    containerClass=""/>
+                            </div>
+                             <!-- phone  -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> رقم الهاتف</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="phone"
+                                [tooltip]="fc.phone.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.phone.valid && (fc.phone.touched)"
+                                [class.is-invalid]="fc.phone.invalid && (fc.phone.touched)"
+                                onlyNumbers
+                                     required
+                                     placeholder="لا يقبل الا رقم حقيقي"
+                                    containerClass="" />
+                            </div>
+                            <!-- Education Level -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> المرحلة الدراسية</label>
+                                <ng-select #Governorate  [selectOnTab]="true" formControlName="educationId"
+                                    class="form-control p-0" placeholder="اختر المرحلة الدراسية"
+                                    containerClass="" 
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of educationlevels" [value]="item.educationId">{{item.nameAr}}</ng-option>
+                                </ng-select>
+                            </div>
+                          
+                             <!-- location -->
+                             <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اكتب الموقع</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="location"
+                                [tooltip]="fc.location.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.location.valid && (fc.location.touched)"
+                                [class.is-invalid]="fc.location.invalid && (fc.location.touched)"
+                                     required
+                                     placeholder="اكتب الموقع"
+                                    containerClass="" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <input class="form-check-input" id="validationCustom05" type="checkbox" [value]="is_test" formControlName="is_test">
+                                <label class="form-check-label" for="flexCheckIndeterminate">
+                                  <h5 style="margin: 0 36px;">is test</h5>
+                                </label>
+
+                            </div>
+
+
+
+
+                        <!-- to insert image for the student  -->
+              <!-- <div class="col-6 my-3 " >
+                <img  src="{{ imageLogo }}" style="width: 60%; height: 220px;" class="image-style p-2" *ngIf="imageLogo != null"/>
+               <input type="file" formControlName="studentImage" accept="image/*" #file id="getLogo"
+                style="display: none" (change)="getLogoUrl($event)" />
+            <button type="button" onclick="document.getElementById('getLogo').click()"
+                class="btn  d-block"  style="width: 60%;">
+                 صورة شخصية للطالب
+            </button>    
+                        </div> -->
+                           
+                        </div>
+
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                               حفظ
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

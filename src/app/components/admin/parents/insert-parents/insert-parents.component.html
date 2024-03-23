@@ -1,0 +1,96 @@
+<div [(ngModel)]="try">
+
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div>
+                        <h5 class="pb-2">ولي امر جديد</h5>
+
+                        <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    <ng-template>
+
+                    </ng-template>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" [formGroup]="ParentForm" (ngSubmit)="onSubmit()"
+                        novalidate>
+                        <div class="form-row">
+                            <!-- Student Name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اسم ولي
+                                    الامر</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="fatherName"
+                                    [tooltip]="fc.fatherName.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.fatherName.valid && (fc.fatherName.touched)"
+                                    [class.is-invalid]="fc.fatherName.invalid && (fc.fatherName.touched)" required
+                                    placeholder="الأسم" containerClass="" />
+                            </div>
+                            <!-- email  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> البريد
+                                    الالكتروني</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="email"
+                                    [tooltip]="fc.email.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.email.valid && (fc.email.touched)"
+                                    [class.is-invalid]="fc.email.invalid && (fc.email.touched)" required
+                                    placeholder="اكتب البريد الالكتروني" containerClass="" />
+                            </div>
+                            <!-- gender -->
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom05"><span class="validation-required">*</span> اختر
+                                    النوع</label>
+                                <ng-select #Governorate [selectOnTab]="true" formControlName="gender"
+                                    class="form-control p-0" placeholder="اختر نوع" containerClass=""
+                                    id="validationCustom05">
+                                    <ng-option *ngFor="let item of gender" [value]="item">{{item}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <!-- password  -->
+                            <div class="col-6 mb-3" *ngIf="recordtoupdate == null">
+                                <label for="validation01"><span class="validation-required">*</span> الرقم السري</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="password"
+                                    [tooltip]="fc.password.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.password.valid && (fc.password.touched)"
+                                    [class.is-invalid]="fc.password.invalid && (fc.password.touched)" required
+                                    placeholder="مثال (Ne_w12@34)" containerClass="" />
+                            </div>
+                            <!-- location -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> اكتب الموقع</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="location"
+                                    [tooltip]="fc.location.errors?.required ? 'الحقل مطلوب' : null"
+                                    [class.is-valid]="fc.location.valid && (fc.location.touched)"
+                                    [class.is-invalid]="fc.location.invalid && (fc.location.touched)" required
+                                    placeholder="اكتب الموقع" containerClass="" />
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12  mb-3">
+                                <label for="validationCustom06"><span class="validation-required">*</span> اختر
+                                    الطلاب</label>
+                                <ng-multiselect-dropdown (onSelect)="studentEmails($event)" [placeholder]="'اختر من القائمة'" [settings]="dropdownSettings"
+                                    [data]="students" [(ngModel)]="selectedItems">
+                                </ng-multiselect-dropdown>
+                            </div>
+                        </div>
+
+                        <br>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn pull-right" type="submit">
+                                حفظ
+                            </button>
+                        </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn pull-right" type="submit">
+                                تعديل
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">امتحانات هذة الحصة</h5>
+                           <!-- <span>Sub-address</span> -->
+                        </div>
+
+                        <div class="col-6 header-titles">
+                            <a (click)="GoToExam()" class="d-block">
+                                <button class="btn btn-primary pull-right" type="button">
+                                    <span class="m-2">اضافة امتحان</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">الرقم التعريفي للامتحان</th>
+                                        <th scope="col">تاريخ تسجيل امتحان</th>         
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let view of exams;let x = index">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td class="p-2">{{view.exam_id}}</td>
+                                        <td class="p-2">{{view.created_at}}</td>
+                                         
+                                        <td class="font-style chose">
+                                            <button class="btn pull-right"
+                                                style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                (click)="Update(view)">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>
+                                            <!-- <ng-template #elseBlock>  -->
+                                                <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                (click)="delete(view.exam_id)">
+                                                <i class="fa fa-trash"></i>
+                                                   </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

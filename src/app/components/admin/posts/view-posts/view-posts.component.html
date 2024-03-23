@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="pb-2">قائمة المنشورات</h5>
+               
+                        </div>
+
+                        <div class="col-6 header-titles">
+                            <a routerLink="/content/admin/InsertPosts" class="d-block">
+                                <button class="btn pull-right" type="button">
+                                    <span class="m-2">اضافة منشور</span>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">اسم المنشور</th>
+                                        <!-- <th scope="col">المرحلة الدراسية</th> -->
+                                             
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                                    <tr cdkDrag
+                                    *ngFor="let view of records | paginate : {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count };let x = index">
+                                        <td scope="row" class="p-2">{{x+1}}</td>
+                                        <td scope="row" class="p-2">{{view.availableOfferName}}</td>
+                                        
+                                        
+                                            <td class="font-style chose">
+                                                <button class="btn pull-right"
+                                                    style="color: rgba(35, 118, 241, 0.667); padding: 7px"
+                                                    (click)="update(view)">
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+                                                   <button class="btn  pull-right"  style="color: red; padding: 7px"
+                                                   (click)="delete(view.availableOffersId)">
+                                                    <i class="fa fa-trash"></i>
+                                                       </button>
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls
+    previousLabel="السابق"
+    nextLabel="التالي"
+    (pageChange)="onTableDataChange($event)"
+    class="text-center">
+    </pagination-controls>
+    <div class="col-12 my-lg-3"
+    *ngIf="haschanges">
+        <button  class="btn w-100" type="submit" (click)="onSubmit()">
+            حفظ الترتيب
+         </button>
+    </div>
+</div>
+
+
+
+

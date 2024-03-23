@@ -1,0 +1,66 @@
+<div class="container my-4">
+    <form>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label><span class="validation-required">*</span>رأس السؤال</label>
+                <angular-editor [config]="editorConfig"></angular-editor>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label><span class="validation-required">*</span>رأس السؤال</label>
+                <input class="form-control" type="file" accept="image/*">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label><span class="validation-required">*</span>الاختيار الاول</label>
+                <div class="input-container">
+                    <input type="text" class="form-control" placeholder="اكتب او اختار صورة">
+                    <input type="file" accept="image/*" class="form-control">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label><span class="validation-required">*</span>الاختيار الثاني</label>
+                <div class="input-container">
+                    <input type="text" class="form-control" placeholder="اكتب او اختار صورة">
+                    <input type="file" accept="image/*" class="form-control">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label><span class="validation-required">*</span>الاختيار الثالث</label>
+                <div class="input-container">
+                    <input type="text" class="form-control" placeholder="اكتب او اختار صورة">
+                    <input type="file" accept="image/*" class="form-control">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label><span class="validation-required"></span>الاختيار الرابع</label>
+                <div class="input-container">
+                    <input type="text" class="form-control" placeholder="اكتب او اختار صورة">
+                    <input type="file" accept="image/*" class="form-control">
+                    <i class="fa fa-camera" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 pt-2">
+                <label><span class="validation-required">*</span>اختار الاجابة الصحيحة</label>
+                <ng-select [selectOnTab]="true" class="form-control p-0" placeholder="اختر الاجابة الصحيحة">
+                    <ng-option>الاختيار الاول</ng-option>
+                    <ng-option>الاختيار الثاني</ng-option>
+                    <ng-option>الاختيار الثالث</ng-option>
+                    <ng-option>الاختيار الرابع</ng-option>
+                </ng-select>
+            </div>
+            <div class="col-md-6 p-5">
+                <input class="form-check-input" type="checkbox" value="true">
+                <label class="form-check-label">
+                    <h5>اضافة تعليل لاجابته</h5>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <button class="btn" type="submit">
+                    حفظ
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

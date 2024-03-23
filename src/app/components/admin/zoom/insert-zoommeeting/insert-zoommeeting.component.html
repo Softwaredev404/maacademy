@@ -1,0 +1,87 @@
+
+
+<!-- <p>insert-zoommeeting works!</p>
+
+
+
+<div id="meetingSDKElement">
+  </div> -->
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">اعمل زووم ميتنج</h5>
+
+                       <span> يرجى ملئ جميع الخانات </span>
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "ZoomForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                          
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> meetingNumber</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="meetingNumber"
+                                [tooltip]="fc.meetingNumber.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.meetingNumber.valid && (fc.meetingNumber.touched)"
+                                [class.is-invalid]="fc.meetingNumber.invalid && (fc.meetingNumber.touched)"
+                                     required
+                                     placeholder="meetingNumber"
+                                    containerClass="" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> userName</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="userName"
+                                [tooltip]="fc.userName.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.userName.valid && (fc.userName.touched)"
+                                [class.is-invalid]="fc.userName.invalid && (fc.userName.touched)"
+                                     required
+                                     placeholder="userName"
+                                    containerClass="" />
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> userEmail</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="userEmail"
+                                [tooltip]="fc.userEmail.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.userEmail.valid && (fc.userEmail.touched)"
+                                [class.is-invalid]="fc.userEmail.invalid && (fc.userEmail.touched)"
+                                     required
+                                     placeholder="userEmail"
+                                    containerClass="" />
+                            </div>
+                             
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> userEmail</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="apiKey"
+                                [tooltip]="fc.apiKey.errors?.required ? 'الحقل مطلوب' : null"
+                                [class.is-valid]="fc.apiKey.valid && (fc.apiKey.touched)"
+                                [class.is-invalid]="fc.apiKey.invalid && (fc.apiKey.touched)"
+                                     required
+                                     placeholder="apiKey"
+                                    containerClass="" />
+                            </div>
+                             
+                        </div>
+
+                        <br>
+                   
+                            <button  class="btn pull-right" type="submit">
+                               افتح ميتنج
+                            </button>
+                          
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
